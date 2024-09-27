@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import * as Font from 'expo-font';
-import { Rubik_400Regular,Rubik_500Medium,Rubik_600SemiBold, Rubik_700Bold } from '@expo-google-fonts/rubik';
+import { Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold, Rubik_800ExtraBold } from '@expo-google-fonts/rubik';
 import * as SplashScreen from 'expo-splash-screen';
 import { View } from 'react-native';
 import { Stack } from 'expo-router';
@@ -19,6 +19,7 @@ export default function RootLayout() {
           Rubik_500Medium,
           Rubik_600SemiBold,
           Rubik_700Bold,
+          Rubik_800ExtraBold
         });
       } catch (e) {
         console.warn(e);
