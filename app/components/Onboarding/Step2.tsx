@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   artWorkImage: {
-    top: -90,
-    right: 0,
+    top: -110,
+    right: -25,
     position: "absolute",
     zIndex: 10,
     width: "100%",
     height: 405,
-    transform: [{ scale: 1.5 }],
+    transform: [{ scale: 1.5 },{scale:0.8}],
 
   },
   safeArea: {
