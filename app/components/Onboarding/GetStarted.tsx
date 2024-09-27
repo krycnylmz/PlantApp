@@ -22,14 +22,6 @@ const GetStarted = () => {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <Header />
-
-          <View style={styles.imageContainer}>
-            <Image
-              source={require('@/assets/images/app/get_started/plant.png')}
-              resizeMode="contain"
-              style={styles.plantImage}
-            />
-          </View>
           <OnboardingFooter>
             <BigGreenButton
               title="Get Started"
@@ -108,15 +100,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Rubik_400Regular',
     color: 'rgba(19, 35, 27, 0.7)',
-  },
-  imageContainer: {
-    marginTop: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  plantImage: {
-    width: "100%",
-    height: 500,
   },
   footer: {
     width: '100%',
