@@ -35,6 +35,15 @@ const PaywallScreen = () => {
         resizeMode="cover"
       />
       <SafeAreaView style={styles.safeArea}>
+
+        {/* Close Button */}
+        {/* Functionality will be added later */}
+        {/* TODO: Add Functionality to the close button*/}
+        <View style={styles.closeButtonWrapper}>
+          <TouchableOpacity style={styles.closeButton} onPress={() => { console.log('presed') }}>
+            <Text style={styles.closeButtonText}>X</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.contentWrapper}>
 
           {/* Header */}
@@ -116,7 +125,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: "#101E17",
-    paddingHorizontal: 24
   },
   plantImageBg: {
     width: 378,
@@ -128,11 +136,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   contentWrapper: {
-    top: 264,
-
+    top: 232,
+    paddingHorizontal: 24,
   },
   header: {
-
+    //
   },
   title: {
     color: "#FFFFFF",
@@ -142,7 +150,8 @@ const styles = StyleSheet.create({
   },
   titleBold: {
     color: "#FFFFFF",
-    fontFamily: 'Rubik_700Bold',
+    fontFamily: 'VisbyCF-ExtraBold',
+    fontWeight:800,
     fontSize: 24,
     lineHeight: 28.44,
   },
@@ -187,7 +196,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.24,
     fontFamily: 'Rubik_500Medium',
   },
-  footerExplaination: { 
+  footerExplaination: {
     fontFamily: 'Rubik_300Light',
     color: 'rgba(255, 255, 255, 0.52)',
     fontSize: 9,
@@ -207,6 +216,29 @@ const styles = StyleSheet.create({
     fontSize: 11,
     lineHeight: 13.04
   },
+  closeButtonWrapper: {
+    width: "100%",
+    marginTop: 8,
+    alignItems: "flex-end",
+    paddingRight: 16,
+  },
+  closeButton: {
+    width: 24,
+    height: 24,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 24,
+
+  },
+  closeButtonText: {
+    fontFamily:"SF-Pro-Rounded-Semibold",
+    fontWeight:600,
+    color: "#FFFFFF",
+    fontSize: 10,
+    lineHeight: 18,
+    letterSpacing: -0.08,
+  }
 
 });
 
