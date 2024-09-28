@@ -1,11 +1,26 @@
+import { useState } from "react"
 import { useRouter } from "expo-router";
-import { View, Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, Image, Linking } from "react-native";
-
+import { View, Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, Image, TouchableOpacity, Linking } from "react-native";
+import FeatureCard from "./FeatureCard";
+import PurchaseOption from './PurchaseOption';
 
 
 const PaywallScreen = () => {
   const router = useRouter();
 
+  // Feature Card icons, loads as a image instead of svg
+  const unlimitedIcon = require('@/assets/images/app/paywall/icons/unlimited.png');
+  const fasterIcon = require('@/assets/images/app/paywall/icons/faster.png');
+  const detailedIcon = require('@/assets/images/app/paywall/icons/detailed.png');
+
+  // Feature Card informations
+  const features = [
+    { title: "Unlimited", description: "Plant Identify", icon: unlimitedIcon },
+    { title: "Faster", description: "Process", icon: fasterIcon },
+    { title: "Detailed", description: "Plant care", icon: detailedIcon },
+  ];
+
+  const [selectedOption, setSelectedOption] = useState('yearly'); // Default selected purchase option is yearly 
 
   const handleOpenURL = (url: string) => {
     Linking.openURL(url);
@@ -33,7 +48,15 @@ const PaywallScreen = () => {
 
           {/* Feature Cards */}
           <ScrollView style={styles.features} horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
-
+            {features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                title={feature.title}
+                description={feature.description}
+                icon={feature.icon}
+                style={{ marginRight: index === features.length - 1 ? 0 : 8 }} // Add marginRigt:8px except last one
+              />
+            ))}
           </ScrollView>
 
           {/* Purchasing */}
@@ -41,11 +64,30 @@ const PaywallScreen = () => {
 
             {/* Purchasing Options */}
             <View style={styles.purcasingOptions}>
-
+              <PurchaseOption
+                title="1 Month"
+                mountlyPrice="$2.99"
+                description="auto renewable"
+                isSelected={selectedOption === 'monthly'}
+                onSelect={() => setSelectedOption('monthly')}
+              />
+              <PurchaseOption
+                title="1 Year"
+                description="First 3 days free, then $529,99/year"
+                isSelected={selectedOption === 'yearly'}
+                onSelect={() => setSelectedOption('yearly')}
+                isBestOption={true}
+                discount="Save 50%"
+              />
             </View>
 
             {/* Purchase Button */}
-
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => console.log('New Customer for', selectedOption, 'payment')}
+              activeOpacity={0.7}>
+              <Text style={styles.buttonText}>Try free for 3 days</Text>
+            </TouchableOpacity>
           </View>
 
           {/* Footer Purchasing explanation */}
