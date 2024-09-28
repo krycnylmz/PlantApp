@@ -1,40 +1,42 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import * as Font from 'expo-font';
-import { Rubik_300Light,Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold, Rubik_800ExtraBold } from '@expo-google-fonts/rubik';
-import * as SplashScreen from 'expo-splash-screen';
 import { View } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { Stack } from 'expo-router';
 
-SplashScreen.preventAutoHideAsync(); // Show SplashScreen until fonts are ready
+// Prevent auto-hide of the splash screen
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
 
+  const [fontsLoaded] = useFonts({
+    'SF-Pro-Display-Semibold': require('../assets/fonts/SF-Pro-Display-Semibold.otf'),
+    'SF-Pro-Rounded-Semibold': require('../assets/fonts/SF-Pro-Rounded-Semibold.otf'),
+    'VisbyCF-ExtraBold': require('../assets/fonts/VisbyCF-ExtraBold.otf'),
+    'SF-Pro-Text-Bold': require('../assets/fonts/SF-Pro-Text-Bold.otf'),
+    'Rubik_300Light': require('@expo-google-fonts/rubik/Rubik_300Light.ttf'),
+    'Rubik_400Regular': require('@expo-google-fonts/rubik/Rubik_400Regular.ttf'),
+    'Rubik_500Medium': require('@expo-google-fonts/rubik/Rubik_500Medium.ttf'),
+    'Rubik_600SemiBold': require('@expo-google-fonts/rubik/Rubik_600SemiBold.ttf'),
+    'Rubik_700Bold': require('@expo-google-fonts/rubik/Rubik_700Bold.ttf'),
+    'Rubik_800ExtraBold': require('@expo-google-fonts/rubik/Rubik_800ExtraBold.ttf'),
+  });
+
   useEffect(() => {
-    async function prepare() {
-      try {
-        // Load rubik font
-        await Font.loadAsync({
-          Rubik_300Light,
-          Rubik_400Regular,
-          Rubik_500Medium,
-          Rubik_600SemiBold,
-          Rubik_700Bold,
-          Rubik_800ExtraBold
-        });
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setAppIsReady(true);
+    const prepare = async () => {
+      if (fontsLoaded) {
+        await SplashScreen.hideAsync(); // Hide splash screen when fonts are loaded
+        setAppIsReady(true); // Mark the app as ready
       }
-    }
+    };
 
     prepare();
-  }, []);
+  }, [fontsLoaded]);
 
-  const onLayoutRootView = useCallback(async () => {
+  const onLayoutRootView = useCallback(() => {
     if (appIsReady) {
-      await SplashScreen.hideAsync(); // Hide SplashScreen when the app is ready
+      SplashScreen.hideAsync(); // Hide SplashScreen when the app is ready
     }
   }, [appIsReady]);
 

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 24,
     letterSpacing: -0.24,
-    fontFamily: 'Rubik_500Medium',
+    fontFamily: 'SF-Pro-Text-Bold',
   } as TextStyle, // Explicitly declare the type for TextStyle
 });
 
