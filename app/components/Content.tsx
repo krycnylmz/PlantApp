@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import React from 'react';
-// import PremiumBox from '@/app/components/PremiumBox';
+import PremiumBox from '@/app/components/PremiumBox';
 import QuestionCard from '@/app/components/QuestionCard';
 import CategoryCard from './CategoryCard';
 
@@ -26,7 +26,9 @@ const Content = () => {
   return (
     <ScrollView contentContainerStyle={contentStyles.scrollContent}>
       <View style={contentStyles.content}>
-        {/* TODO:<PremiumBox /> */}
+        
+        {/* PremiumBox */}
+        <PremiumBox />
 
         {/* Questions Part */}
         <View style={contentStyles.questionsWrapper}>
