@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useRouter } from "expo-router";
 import { View, Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, Image, TouchableOpacity, Linking } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import FeatureCard from "./FeatureCard";
 import PurchaseOption from './PurchaseOption';
 
@@ -26,6 +27,11 @@ const PaywallScreen = () => {
     Linking.openURL(url);
   };
 
+  const handleClose = async () => {
+    await AsyncStorage.setItem("alreadyLaunched", "true");
+    router.replace("/Home"); // replace with home screen
+  };
+
   return (
     <View style={styles.container}>
       {/* StatusBar*/}
@@ -37,10 +43,8 @@ const PaywallScreen = () => {
       <SafeAreaView style={styles.safeArea}>
 
         {/* Close Button */}
-        {/* Functionality will be added later */}
-        {/* TODO: Add Functionality to the close button*/}
         <View style={styles.closeButtonWrapper}>
-          <TouchableOpacity style={styles.closeButton} onPress={() => { console.log('presed') }}>
+          <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
             <Text style={styles.closeButtonText}>X</Text>
           </TouchableOpacity>
         </View>
