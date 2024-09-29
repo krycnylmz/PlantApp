@@ -6,7 +6,7 @@ import TabBar from '@/app/components/TabBar'
 
 const Home = () => {
   return (
-    <View >
+    <View style={homeStyles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#130F26" />
       <SafeAreaView>
         <Header />
@@ -17,5 +17,12 @@ const Home = () => {
     </View>
   );
 };
-
+// Styles
+const homeStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: "rgba(251, 250, 250, 1)",
+  },
+})
 export default Home;
