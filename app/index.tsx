@@ -5,7 +5,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
-  const [firstLaunch, setFirstLaunch] = useState(true);
+  const [firstLaunch, setFirstLaunch] = useState(false);
 
   useEffect(() => {
     const checkFirstLaunch = async () => {
