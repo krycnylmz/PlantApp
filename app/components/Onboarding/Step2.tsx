@@ -40,7 +40,7 @@ const Step2 = () => {
             </View>
 
             <OnboardingFooter>
-              <BigGreenButton title="Continue" onPress={() => router.push("/components/Paywall/PaywallScreen")} />
+              <BigGreenButton title="Continue" onPress={() => router.replace("/components/Paywall/PaywallScreen")} />
               <Pagination totalStep={3} currentStep={1} />
             </OnboardingFooter>
           </View>

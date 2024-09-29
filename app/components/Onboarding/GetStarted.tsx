@@ -25,7 +25,7 @@ const GetStarted = () => {
           <OnboardingFooter>
             <BigGreenButton
               title="Get Started"
-              onPress={() => router.push('/components/Onboarding/Step1')}
+              onPress={() => router.replace('/components/Onboarding/Step1')}
             />
 
             <Footer

@@ -19,7 +19,7 @@ const Step1 = () => {
         <View style={styles.container}>
           <Header />
           <OnboardingFooter>
-            <BigGreenButton title="Continue" onPress={() => router.push("/components/Onboarding/Step2")} />
+            <BigGreenButton title="Continue" onPress={() => router.replace("/components/Onboarding/Step2")} />
             <Pagination totalStep={3} currentStep={0}/>
           </OnboardingFooter>
         </View>
