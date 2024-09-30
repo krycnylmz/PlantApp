@@ -2,12 +2,14 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 interface QuestionCardProps {
-  title: string,
+  title: string;
+  image_uri: string;
 }
-const QuestionCard: React.FC<QuestionCardProps> = ({ title }) => {
+
+const QuestionCard: React.FC<QuestionCardProps> = ({ title, image_uri }) => {
   return (
     <TouchableOpacity style={questionCardStyles.container} activeOpacity={0.8} onPress={() => { console.log(title, ' pressed!') }}>
-      <Image source={require('@/assets/images/dev/questionCardExampleImage.png')} style={questionCardStyles.image} resizeMode='cover' />
+      <Image source={{ uri: image_uri }} style={questionCardStyles.image} resizeMode='cover' />
       <View style={questionCardStyles.textWrapper}>
         <Text
           style={questionCardStyles.text}
