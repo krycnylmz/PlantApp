@@ -1,10 +1,21 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router'; 
+
 import type { Question } from '../types';
 
-const QuestionCard: React.FC<Question> = ({ title, image_uri }) => {
+const QuestionCard: React.FC<Question> = ({ title, image_uri,uri }) => {
+  const router = useRouter();
+
+  const handlePressQuestion = () => {
+    router.push({
+      pathname: '/components/QuestionScreenWebView',
+      params: { uri }, // Passing the uri as a parameter
+    });
+  };
+
   return (
-    <TouchableOpacity style={questionCardStyles.container} activeOpacity={0.8} onPress={() => { console.log(title, ' pressed!') }}>
+    <TouchableOpacity style={questionCardStyles.container} activeOpacity={0.8} onPress={handlePressQuestion}>
       <Image source={{ uri: image_uri }} style={questionCardStyles.image} resizeMode='cover' />
       <View style={questionCardStyles.textWrapper}>
         <Text

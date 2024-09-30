@@ -78,6 +78,11 @@ export default function RootLayout() {
             options={{ headerShown: false }}
           />
         </Stack>
+
+        {/* <Stack.Screen
+          name="components/QuestionScreenWebView"
+          options={{ headerShown: false }} // Bu sayfada header'ı gizliyoruz
+        /> */}
       </View>
     </Provider>
   );
