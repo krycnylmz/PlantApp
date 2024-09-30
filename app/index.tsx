@@ -31,7 +31,7 @@ const Index = () => {
   if (firstLaunch) {
     return <Redirect href="/components/Onboarding/GetStarted" />;
   } else {
-    return <Redirect href="/Home" />;
+    return <Redirect href="/(tabs)/home" />;
   }
 };
 

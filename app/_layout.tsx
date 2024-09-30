@@ -63,9 +63,15 @@ export default function RootLayout() {
           name="components/Paywall/PaywallScreen"
           options={{ headerShown: false }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Home"
           options={{ headerShown: false }}
+        /> */}
+
+        {/* Ana Sayfa ve Tab Navigasyonu */}
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false }} // Tab bar başlığını gizlemek için
         />
       </Stack>
     </View>

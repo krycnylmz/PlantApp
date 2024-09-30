@@ -29,7 +29,7 @@ const PaywallScreen = () => {
 
   const handleClose = async () => {
     await AsyncStorage.setItem("alreadyLaunched", "true");
-    router.replace("/Home"); // replace with home screen
+    router.replace("/home"); // replace with home screen
   };
 
   return (
