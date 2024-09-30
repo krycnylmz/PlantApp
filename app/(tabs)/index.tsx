@@ -1,9 +1,14 @@
+import { useEffect, useState } from "react";
+import { View, StatusBar, StyleSheet,SafeAreaView,ActivityIndicator,Text } from "react-native";
 import { Redirect } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import ClearStorageButton from '@/app/components/Dev/ClearStorageButton'
+import Header from '@/app/components/Header';
+import Content from '@/app/components/Content';
 
-const Index = () => {
+const HomeScreen = () => {
+
+
   const [loading, setLoading] = useState(true);
   const [firstLaunch, setFirstLaunch] = useState(false);
 
@@ -30,9 +35,25 @@ const Index = () => {
 
   if (firstLaunch) {
     return <Redirect href="/components/Onboarding/GetStarted" />;
-  } else {
-    return <Redirect href="/(tabs)/home" />;
   }
-};
 
-export default Index;
+  return (
+    <View style={homeStyles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#130F26" />
+      <SafeAreaView>
+        <Header />
+        <Content />
+        <ClearStorageButton />
+      </SafeAreaView>
+    </View>
+  );
+};
+// Styles
+const homeStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: "rgba(251, 250, 250, 1)",
+  },
+})
+export default HomeScreen;
