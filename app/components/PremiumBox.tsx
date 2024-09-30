@@ -13,10 +13,16 @@ const PremiumBox = () => {
 
   return (
     <TouchableOpacity style={premiumBoxStyles.premiumBox} activeOpacity={0.8} onPress={handleOnpress}>
-      <Image
-        source={require('@/assets/images/app/home_screen/premium_icon_mail.png')}
-        style={premiumBoxStyles.premiumIcon}
-      />
+      <View style={premiumBoxStyles.mailWrapper}>
+        <Image
+          source={require('@/assets/images/app/home_screen/premium_icon_mail.png')}
+          style={premiumBoxStyles.premiumIcon}
+        />
+        <View style={premiumBoxStyles.mailNotificationWrapper}>
+          <Text style={premiumBoxStyles.mailNotificationNumber}>1</Text>
+        </View>
+      </View>
+
       <View style={premiumBoxStyles.premiumTextsWrapper}>
         <GradientTexts gradientColors={gradientColors} />
       </View>
@@ -41,7 +47,7 @@ const premiumBoxStyles = StyleSheet.create({
 
     // iOS shadow
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 }, // Yalnızca alta gölge verir
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
 
@@ -51,13 +57,31 @@ const premiumBoxStyles = StyleSheet.create({
   premiumTextsWrapper: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center', // Textleri ortalar
+    justifyContent: 'center',
+  },
+  mailWrapper: {
+    position: "relative",
   },
   premiumIcon: {
     width: 32,
     height: 24,
   },
-
+  mailNotificationWrapper: {
+    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    right: -6,
+    top: -6,
+    width: 15,
+    height: 15,
+    borderRadius: 15
+  },
+  mailNotificationNumber: {
+    color: "white",
+    fontSize:9,
+    fontFamily:"Rubik_400Regular",
+  },
   arrow: {
     position: "absolute",
     right: 12,
