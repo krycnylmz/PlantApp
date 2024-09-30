@@ -1,0 +1,1 @@
+export const API_BASE_URL = 'https://dummy-api-jtg6bessta-ey.a.run.app/';

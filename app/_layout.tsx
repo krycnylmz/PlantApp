@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { Stack } from 'expo-router';
+import { Provider } from 'react-redux'; // Redux provider'ı import ediyoruz
+import { store } from '@/app/redux/store'; // Store'u import ediyoruz
 
 // Prevent auto-hide of the splash screen
 SplashScreen.preventAutoHideAsync();
@@ -45,35 +47,38 @@ export default function RootLayout() {
   }
 
   return (
-    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <Stack>
-        <Stack.Screen
-          name="components/Onboarding/GetStarted"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="components/Onboarding/Step1"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="components/Onboarding/Step2"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="components/Paywall/PaywallScreen"
-          options={{ headerShown: false }}
-        />
-        {/* <Stack.Screen
+    // Wrap the app with provider for store
+    <Provider store={store}>
+      <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+        <Stack>
+          <Stack.Screen
+            name="components/Onboarding/GetStarted"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="components/Onboarding/Step1"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="components/Onboarding/Step2"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="components/Paywall/PaywallScreen"
+            options={{ headerShown: false }}
+          />
+          {/* <Stack.Screen
           name="Home"
           options={{ headerShown: false }}
         /> */}
 
-        {/* Ana Sayfa ve Tab Navigasyonu */}
-        <Stack.Screen
-          name="(tabs)"
-          options={{ headerShown: false }} // Tab bar başlığını gizlemek için
-        />
-      </Stack>
-    </View>
+          {/* Home and Tab Navigation */}
+          <Stack.Screen
+            name="(tabs)"
+            options={{ headerShown: false }}
+          />
+        </Stack>
+      </View>
+    </Provider>
   );
 }
