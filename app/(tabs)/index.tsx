@@ -59,7 +59,7 @@ const HomeScreen = () => {
       <SafeAreaView>
         <Header />
         <Content />
-        <ClearStorageButton />
+        {/* <ClearStorageButton /> */}
       </SafeAreaView>
     </Animated.View>
   );
