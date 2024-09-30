@@ -1,19 +1,15 @@
 import { TouchableOpacity, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
-
-interface CategoryCardProps {
-  title: string
-  imageUrl: string
-}
+import type { Category } from '../types';
 
 const gradientColors = ['rgba(255, 255, 255, 1)', 'rgba(249, 255, 250, 1)']
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ title, imageUrl }) => {
+const CategoryCard: React.FC<Category> = ({ title, image }) => {
   return (
     <TouchableOpacity style={categoryCardStyles.container} onPress={() => { console.log("pressed ", title) }}>
       <Text style={categoryCardStyles.title}>{title}</Text>
-      <Image style={categoryCardStyles.image} source={{ uri: imageUrl }} />
+      <Image style={categoryCardStyles.image} source={{ uri: image.url }} />
       {/* Gradient background */}
       <LinearGradient
         start={{ x: 0, y: 1 }}

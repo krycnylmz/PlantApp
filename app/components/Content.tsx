@@ -5,49 +5,7 @@ import { useGetCategoriesQuery } from '@/app/services/categoriesApi';
 import PremiumBox from '@/app/components/PremiumBox';
 import QuestionCard from '@/app/components/QuestionCard';
 import CategoryCard from './CategoryCard';
-
-interface CategoryImage {
-  id: number;
-  name: string;
-  alternativeText: string | null;
-  caption: string | null;
-  width: number;
-  height: number;
-  formats: any | null;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl: string | null;
-  provider: string;
-  provider_metadata: any | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface Category {
-  id: number;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  title: string;
-  rank: number;
-  image: CategoryImage;
-}
-
-
-interface Question {
-  id: number;
-  title: string;
-  subtitle: string;
-  image_uri: string;
-  uri: string;
-  order: number;
-}
-
-
+import type { Category, Question } from '@/app/types'
 
 const Content = () => {
   const { data: categoriesData, isLoading: isLoadingCategories } = useGetCategoriesQuery({});
@@ -70,7 +28,7 @@ const Content = () => {
             style={contentStyles.questions}
             data={questionsData}
             keyExtractor={(item: Question) => item.id.toString()}
-            renderItem={({ item }) => <QuestionCard title={item.title} image_uri={item.image_uri} />}
+            renderItem={({ item }) => <QuestionCard {...item} />}
             horizontal
             contentContainerStyle={contentStyles.questionsContainerStyle}
             showsHorizontalScrollIndicator={false}
@@ -82,7 +40,7 @@ const Content = () => {
         <View style={contentStyles.categoriesWrapper}>
           {categoriesData && categoriesData.data && categoriesData.data.map((item: Category) => (
             <View key={item.id} style={contentStyles.categoryItem}>
-              <CategoryCard title={item.title} imageUrl={item.image.url} />
+              <CategoryCard {...item} />
             </View>
           ))}
         </View>
