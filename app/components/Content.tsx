@@ -1,32 +1,65 @@
 import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import React from 'react';
+import { useGetQuestionsQuery } from '@/app/services/questionsApi';
+import { useGetCategoriesQuery } from '@/app/services/categoriesApi';
 import PremiumBox from '@/app/components/PremiumBox';
 import QuestionCard from '@/app/components/QuestionCard';
 import CategoryCard from './CategoryCard';
 
-const Content = () => {
-  const questions = [
-    { id: '1', title: 'How to identify plants?' },
-    { id: '2', title: 'Differences Between Species and Varieties?' },
-    { id: '3', title: 'The reasons why the same plant can look different?' },
-  ];
+interface CategoryImage {
+  id: number;
+  name: string;
+  alternativeText: string | null;
+  caption: string | null;
+  width: number;
+  height: number;
+  formats: any | null;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: string | null;
+  provider: string;
+  provider_metadata: any | null;
+  createdAt: string;
+  updatedAt: string;
+}
 
-  const categories = [
-    { id: 11, title: 'Ferns' },
-    { id: 10, title: 'Cacti and Succulents' },
-    { id: 4, title: 'Flowering Plants' },
-    { id: 7, title: 'Vegetables and Fruits' },
-    { id: 8, title: 'Herbs' },
-    { id: 5, title: 'Trees' },
-    { id: 6, title: 'Shrubs' },
-    { id: 9, title: 'Groundcover' },
-    { id: 12, title: 'Edible Plants' }
-  ];
+interface Category {
+  id: number;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  title: string;
+  rank: number;
+  image: CategoryImage;
+}
+
+
+interface Question {
+  id: number;
+  title: string;
+  subtitle: string;
+  image_uri: string;
+  uri: string;
+  order: number;
+}
+
+
+
+const Content = () => {
+  const { data: categoriesData, isLoading: isLoadingCategories } = useGetCategoriesQuery({});
+  const { data: questionsData, isLoading: isLoadingQuestions } = useGetQuestionsQuery({});
+
+  if (isLoadingCategories || isLoadingQuestions) {
+    return <Text>Loading...</Text>;
+  }
 
   return (
     <ScrollView contentContainerStyle={contentStyles.scrollContent}>
       <View style={contentStyles.content}>
-        
         {/* PremiumBox */}
         <PremiumBox />
 
@@ -35,9 +68,9 @@ const Content = () => {
           <Text style={contentStyles.questionsHeadTitle}>Get Started</Text>
           <FlatList
             style={contentStyles.questions}
-            data={questions}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <QuestionCard title={item.title} />}
+            data={questionsData}
+            keyExtractor={(item: Question) => item.id.toString()}
+            renderItem={({ item }) => <QuestionCard title={item.title} image_uri={item.image_uri} />}
             horizontal
             contentContainerStyle={contentStyles.questionsContainerStyle}
             showsHorizontalScrollIndicator={false}
@@ -47,9 +80,9 @@ const Content = () => {
 
         {/* Categories Part */}
         <View style={contentStyles.categoriesWrapper}>
-          {categories.map((item) => (
+          {categoriesData && categoriesData.data && categoriesData.data.map((item: Category) => (
             <View key={item.id} style={contentStyles.categoryItem}>
-              <CategoryCard title={item.title} />
+              <CategoryCard title={item.title} imageUrl={item.image.url} />
             </View>
           ))}
         </View>
@@ -65,8 +98,8 @@ const contentStyles = StyleSheet.create({
   content: {
     flex: 1,
     paddingHorizontal: 24,
-    flexDirection:"column",
-    gap:24
+    flexDirection: "column",
+    gap: 24
   },
   questionsWrapper: {
     flexDirection: 'column',
