@@ -19,7 +19,6 @@ const HomeScreen = () => {
       const launchedBefore = await AsyncStorage.getItem("alreadyLaunched");
       if (launchedBefore === null) {
         setFirstLaunch(true);
-        await AsyncStorage.setItem("alreadyLaunched", "true");
       }
       setLoading(false);
     };
