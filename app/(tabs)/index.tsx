@@ -28,7 +28,6 @@ const HomeScreen = () => {
 
   useEffect(() => {
     if (!loading) {
-      // Sayfa yüklendiğinde opacity'yi 1'e geçiş yapıyoruz (fade-in)
       opacity.value = withTiming(1, { duration: 1000 });
     }
   }, [loading]);
@@ -41,12 +40,7 @@ const HomeScreen = () => {
   });
 
   if (loading) {
-    return (
-      <View style={homeStyles.loadingContainer}>
-        <ActivityIndicator size="large" />
-        <Text>Loading...</Text>
-      </View>
-    );
+    return null;
   }
 
   if (firstLaunch) {

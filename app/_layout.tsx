@@ -28,7 +28,6 @@ export default function RootLayout() {
   useEffect(() => {
     const prepare = async () => {
       if (fontsLoaded) {
-        await SplashScreen.hideAsync(); // Hide splash screen when fonts are loaded
         setAppIsReady(true); // Mark the app as ready
       }
     };
@@ -67,22 +66,12 @@ export default function RootLayout() {
             name="components/Paywall/PaywallScreen"
             options={{ headerShown: false }}
           />
-          {/* <Stack.Screen
-          name="Home"
-          options={{ headerShown: false }}
-        /> */}
-
           {/* Home and Tab Navigation */}
           <Stack.Screen
             name="(tabs)"
             options={{ headerShown: false }}
           />
         </Stack>
-
-        {/* <Stack.Screen
-          name="components/QuestionScreenWebView"
-          options={{ headerShown: false }} // Bu sayfada header'ı gizliyoruz
-        /> */}
       </View>
     </Provider>
   );
